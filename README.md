@@ -42,4 +42,4 @@ spring-cloud对应的版本
 ```
 
 ### 重点关注
-```com.alibaba.nacos.api.NacosFactory``` 核心类，用于创建```NacosNamingService```和```NacosConfigService```，维持客户端和服务端之间的数据通信。
+```com.alibaba.nacos.api.NacosFactory``` 核心类，用于创建```NacosNamingService```和```NacosConfigService```，维持客户端和服务端之间的数据通信、容灾。
