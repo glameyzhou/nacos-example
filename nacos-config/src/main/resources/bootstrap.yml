@@ -1,0 +1,50 @@
+server:
+  port: 7010
+
+
+
+spring:
+  application:
+    name: nacos-config
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        group: DEFAULT_GROUP
+        file-extension: properties
+        prefix: nacos-config
+      discovery:
+        server-addr: 127.0.0.1:8848
+  profiles:
+    active: dev
+
+
+---
+#dev env
+spring:
+  profiles: dev
+user:
+  code: dev_zhangsan
+  age: 100
+---
+
+---
+#qa env
+spring:
+  profiles: qa
+
+user:
+  code: qa_zhangsan
+  age: 99
+
+---
+
+---
+#prod env
+spring:
+  profiles: prod
+
+user:
+  code: prod_zhangsan
+  age: 98
+---
