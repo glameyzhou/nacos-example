@@ -1,4 +1,4 @@
-### nacos example
+### nacos example(spring-cloud集成)
 
 + nacos discovery
 + nacos config
@@ -7,7 +7,7 @@
 ### 备注
 nacos[官方文档](https://nacos.io/zh-cn/docs/quick-start-spring-cloud.html)
 
-服务端下载[地址](https://github.com/alibaba/nacos/releases)，版本 ```1.0.0(Apr 10, 2019)```
+服务端下载[地址](https://github.com/alibaba/nacos/releases)，版本 ```1.0.0(Apr 10, 2019)```，配置默认在```derby```中，生成需要替换为```mysql```
 
 spring-boot版本
 ```xml
