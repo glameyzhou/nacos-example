@@ -16,6 +16,20 @@ public class NacosDiscoverConsumerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NacosDiscoverConsumerApplication.class, args);
+        /*Properties properties = new Properties();
+        try {
+            NamingService namingService = NamingFactory.createNamingService(properties);
+            namingService.registerInstance("serviceName_1", "1.1.1.1", 9091, "test");
+            namingService.registerInstance("serviceName_1", "1.1.1.2", 9091, "test");
+
+            namingService.getAllInstances("serviceName_1");
+
+
+            properties.load(new InputStreamReader(new ByteArrayInputStream("".getBytes(Charsets.UTF_8))));
+
+        } catch (NacosException | IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
 

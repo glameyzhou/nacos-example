@@ -1,5 +1,6 @@
 package com.pintec.springcloud.nacos.config.client;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.primitives.Ints;
@@ -9,7 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.logging.log4j.util.Strings;
 
-import java.util.Iterator;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -52,24 +57,29 @@ public class ConfigMap {
 
     public static void flush(String configInfo) {
         if (StringUtils.isBlank(configInfo)) {
+            log.warn("remote config content is empty.......");
             GLOBAL.clear();
         }
+        //通过properties来接收对应的字符串
+        Properties properties = new Properties();
+        try {
+            log.info("new config list is : \n");
+            properties.load(new InputStreamReader(new ByteArrayInputStream(configInfo.getBytes(Charsets.UTF_8))));
 
-        String[] strings = StringUtils.split(configInfo, "\n");
-        if (strings.length == 0) {
-            throw new RuntimeException("配置信息解析失败");
+        } catch (IOException e) {
+            log.error("read the remote config info error[string convert to properties]", e);
         }
-
-        log.info("new config list is : \n");
-        for (String string : strings) {
-            Iterator<String> iterator = SPLITTER.split(string).iterator();
-            String key = iterator.next();
-            String value = iterator.next();
-            log.info("{} : {}", key, value);
+        Set<String> keys = properties.stringPropertyNames();
+        for (String key : keys) {
+            Object valObj = properties.get(key);
+            String val = valObj != null ? valObj.toString() : "";
+            log.info("{} : {}", key, val);
             String oldVal = GLOBAL.get(key);
-            if (!StringUtils.equals(value, oldVal)) {
-                GLOBAL.put(key, value);
+            if (!StringUtils.equals(oldVal, val)) {
+                GLOBAL.put(key, val);
             }
         }
+
+        log.info("local config map content is {}", GLOBAL);
     }
 }
