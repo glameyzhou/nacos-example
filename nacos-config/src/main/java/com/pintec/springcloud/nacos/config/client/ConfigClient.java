@@ -22,7 +22,6 @@ import java.util.concurrent.Executors;
 @Component
 @Slf4j
 public class ConfigClient {
-
     @Value(value = "${spring.cloud.nacos.config.server-addr}")
     private String serverAddr;
 
@@ -37,6 +36,11 @@ public class ConfigClient {
 
     @PostConstruct
     public void init() {
+        if (StringUtils.isBlank(serverAddr)) {
+            log.warn("检测到未配置nacos config server address，请确认是否开启nacos config配置");
+            return;
+        }
+
         String dataId = generateDataId();
         Properties properties = new Properties();
         properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
@@ -67,10 +71,9 @@ public class ConfigClient {
             });
 
         } catch (NacosException e) {
-            log.error("create the config service error", e);
+            //terminal the application start...
+            throw new RuntimeException("service client create NacosConfigService error", e);
         }
-
-
     }
 
     private String generateDataId() {
