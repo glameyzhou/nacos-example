@@ -1,4 +1,4 @@
-package com.pintec.springcloud.nacos.discovery.consumer.client;
+package com.pintec.springcloud.nacos.discovery.consumer.feign;
 
 
 import org.springframework.cloud.openfeign.FeignClient;

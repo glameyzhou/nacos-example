@@ -1,6 +1,6 @@
 package com.pintec.springcloud.nacos.discovery.consumer.controller;
 
-import com.pintec.springcloud.nacos.discovery.consumer.client.ProviderClient;
+import com.pintec.springcloud.nacos.discovery.consumer.feign.ProviderClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
