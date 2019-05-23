@@ -28,11 +28,17 @@ public class ConfigClient {
     @Value(value = "${spring.cloud.nacos.config.group:DEFAULT_GROUP}")
     private String group;
 
+    @Value(value = "${spring.cloud.nacos.config.prefix}")
+    private String prefix;
+
     @Value(value = "${spring.application.name}")
     private String applicationName;
 
     @Value(value = "${spring.profiles.active}")
     private String activeProfile;
+
+    @Value(value = "${spring.cloud.nacos.config.file-extension:properties")
+    private String fileExtension;
 
     @PostConstruct
     public void init() {
@@ -49,7 +55,7 @@ public class ConfigClient {
 
         try {
             ConfigService configService = NacosFactory.createConfigService(properties);
-            String configContent = configService.getConfig(dataId, group, 5000); //获取服务器段的配置，超时设置5S
+            String configContent = configService.getConfig(dataId, group, 5000);
             log.info("get Config by interface -->\n {}", configContent);
 
 
@@ -66,7 +72,7 @@ public class ConfigClient {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
                     log.info("remote the content by listener ->\n{}", configInfo);
-                    ConfigMap.flush(configInfo);
+                    ConfigMap.flush(dataId, configInfo, fileExtension);
                 }
             });
 
@@ -77,9 +83,10 @@ public class ConfigClient {
     }
 
     private String generateDataId() {
+        String prefixTmp = StringUtils.defaultIfBlank(prefix, applicationName);
         if (StringUtils.isBlank(activeProfile)) {
-            return applicationName + ".properties";
+            return prefixTmp + "." + fileExtension;
         }
-        return applicationName + "-" + activeProfile + ".properties";
+        return prefixTmp + "-" + activeProfile + "." + fileExtension;
     }
 }

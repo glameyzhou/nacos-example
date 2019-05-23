@@ -1,8 +1,3 @@
-server:
-  port: 7010
-
-
-
 spring:
   application:
     name: nacos-config
@@ -13,8 +8,10 @@ spring:
         group: DEFAULT_GROUP
         file-extension: properties
         prefix: nacos-config
+#        namespace: 384befff-57bd-4f33-9b6a-ebdaba191a42
       discovery:
         server-addr: 127.0.0.1:8848
+
   profiles:
     active: dev
 
@@ -23,16 +20,20 @@ spring:
 #dev env
 spring:
   profiles: dev
+
 user:
   code: dev_zhangsan
   age: 100
+server:
+  port: 7010
 ---
 
 ---
 #qa env
 spring:
   profiles: qa
-
+server:
+  port: 7010
 user:
   code: qa_zhangsan
   age: 99
@@ -43,7 +44,8 @@ user:
 #prod env
 spring:
   profiles: prod
-
+server:
+  port: 7010
 user:
   code: prod_zhangsan
   age: 98
