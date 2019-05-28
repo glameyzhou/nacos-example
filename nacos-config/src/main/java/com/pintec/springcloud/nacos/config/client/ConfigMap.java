@@ -1,3 +1,4 @@
+/*
 package com.pintec.springcloud.nacos.config.client;
 
 import com.google.common.base.Preconditions;
@@ -88,3 +89,4 @@ public class ConfigMap {
         log.info("local config map content is {}", GLOBAL);
     }
 }
+*/

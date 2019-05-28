@@ -12,7 +12,7 @@
     <artifactId>nacos-provider</artifactId>
 
 
-    <dependencies>
+    <!--<dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -22,5 +22,5 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-    </dependencies>
+    </dependencies>-->
 </project>

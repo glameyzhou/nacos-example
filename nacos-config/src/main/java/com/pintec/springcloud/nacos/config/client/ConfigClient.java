@@ -1,3 +1,4 @@
+/*
 package com.pintec.springcloud.nacos.config.client;
 
 
@@ -16,9 +17,11 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+*/
 /**
  * 通过java客户端来自动更新日志
- */
+ *//*
+
 @Component
 @Slf4j
 public class ConfigClient {
@@ -90,3 +93,4 @@ public class ConfigClient {
         return prefixTmp + "-" + activeProfile + "." + fileExtension;
     }
 }
+*/
