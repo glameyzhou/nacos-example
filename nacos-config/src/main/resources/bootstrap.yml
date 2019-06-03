@@ -8,14 +8,15 @@ spring:
         group: DEFAULT_GROUP
         file-extension: properties
         prefix: nacos-config
-#        ext-config:
-#          -
-#            data-id: dataId1
-#            refresh: true
-#          -
-#            data-id: dataId2
-#            refresh: false
-      #        namespace: 384befff-57bd-4f33-9b6a-ebdaba191a42
+        ext-config:
+          - data-id: nacos-config-ext-test.properties
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: redis.properties
+            group: shard-area
+            refresh: true
+#        shared-dataids: redis.properties,redis.properties
+#        refreshable-dataids: redis.properties,redis.properties
       discovery:
         server-addr: 127.0.0.1:8848
 
