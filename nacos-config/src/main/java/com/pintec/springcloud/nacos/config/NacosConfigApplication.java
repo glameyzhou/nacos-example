@@ -36,8 +36,11 @@ public class NacosConfigApplication {
         @Resource
         private PropertiesEcho propertiesEcho;
 
-        @Value(value = "${spring.cloud.nacos.config.server-addr}")
+        @Value(value = "${spring.cloud.nacos.config.server-addr:}")
         private String serverAddr;
+
+        @Value(value = "${spring.cloud.nacos.config.endpoint:}")
+        private String endpoint;
 
         @Value(value = "${spring.cloud.nacos.config.group:DEFAULT_GROUP}")
         private String group;

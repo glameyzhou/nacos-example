@@ -4,7 +4,8 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+#        endpoint: www.glamey.org:80
         group: DEFAULT_GROUP
         file-extension: properties
         prefix: nacos-config
@@ -15,10 +16,11 @@ spring:
           - data-id: redis.properties
             group: shard-area
             refresh: true
-#        shared-dataids: redis.properties,redis.properties
+      #        shared-dataids: redis.properties,redis.properties
 #        refreshable-dataids: redis.properties,redis.properties
       discovery:
-        server-addr: 127.0.0.1:8848
+#        endpoint: www.glamey.org:80
+        server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
 
   profiles:
     active: dev
