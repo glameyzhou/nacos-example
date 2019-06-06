@@ -45,7 +45,7 @@ public class NacosConfigApplication {
         @Value(value = "${spring.cloud.nacos.config.group:DEFAULT_GROUP}")
         private String group;
 
-        @Value(value = "${spring.cloud.nacos.config.prefix}")
+        @Value(value = "${spring.cloud.nacos.config.prefix:${spring.application.name}}")
         private String prefix;
 
         @Value(value = "${spring.application.name}")
@@ -71,10 +71,13 @@ public class NacosConfigApplication {
     @Component
     @ToString
     public static class User {
-        @Value("${user.code}")
+        @Value("${user.code:我是本地@Value中defaultValue的user.code}")
         private String code;
 
         @Value("${user.age}")
         private int age;
+
+        @Value("${user.content}")
+        private String content;
     }
 }

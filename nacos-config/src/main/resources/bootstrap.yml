@@ -32,8 +32,9 @@ spring:
   profiles: dev
 
 user:
-  code: dev_zhangsan
+  code: 我是本地properties中设置的user.code
   age: 100
+  content: 我是本地properties中设置的user.content
 server:
   port: 7010
 ---
