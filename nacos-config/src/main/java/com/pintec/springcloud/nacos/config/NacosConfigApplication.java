@@ -1,6 +1,7 @@
 package com.pintec.springcloud.nacos.config;
 
 
+import com.pintec.springcloud.nacos.config.properties.AutoboxObject;
 import com.pintec.springcloud.nacos.config.properties.PropertiesEcho;
 import com.pintec.springcloud.nacos.config.properties.ThreadPoolProperties;
 import lombok.ToString;
@@ -36,6 +37,9 @@ public class NacosConfigApplication {
         @Resource
         private PropertiesEcho propertiesEcho;
 
+        @Resource
+        private AutoboxObject autoboxObject;
+
         @Value(value = "${spring.cloud.nacos.config.server-addr:}")
         private String serverAddr;
 
@@ -59,10 +63,10 @@ public class NacosConfigApplication {
 
         @GetMapping(value = "echoConfig")
         public String echoConfig() {
-            log.info("nacos config -> {} \r\n ext config -> {}\r\n nested config -> {}, {}",
-                    user, threadPoolProperties, propertiesEcho.echoThreadPool(), propertiesEcho.echoRedis());
-            return String.format("nacos config -> %s <br/> ext config -> %s<br/> nested config -> %s, %s<br/>",
-                    user, threadPoolProperties, propertiesEcho.echoThreadPool(), propertiesEcho.echoRedis());
+            log.info("nacos config -> {} \r\n ext config -> {}\r\n nested config -> {}, {} \r\n autoBox -> {}",
+                    user, threadPoolProperties, propertiesEcho.echoThreadPool(), propertiesEcho.echoRedis(), autoboxObject);
+            return String.format("nacos config -> %s <br/> ext config -> %s<br/> nested config -> %s, %s<br/>> autobox config -> %s<br/>",
+                    user, threadPoolProperties, propertiesEcho.echoThreadPool(), propertiesEcho.echoRedis(), autoboxObject);
         }
     }
 

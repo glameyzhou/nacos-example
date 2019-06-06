@@ -5,7 +5,8 @@ spring:
     nacos:
       config:
         server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
-#        endpoint: www.glamey.org:80
+#        server-addr: 10.10.8.33:8080,10.10.8.34:8080,10.10.8.35:8080
+        #        endpoint: www.glamey.org:80
         group: DEFAULT_GROUP
         file-extension: properties
         prefix: nacos-config
@@ -13,9 +14,13 @@ spring:
           - data-id: nacos-config-ext-test.properties
             group: DEFAULT_GROUP
             refresh: true
+          - data-id: nacos-config-ext-autobox.properties
+            group: DEFAULT_GROUP
+            refresh: true
           - data-id: redis.properties
             group: shard-area
             refresh: true
+#        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772  #demo-namespace
       #        shared-dataids: redis.properties,redis.properties
 #        refreshable-dataids: redis.properties,redis.properties
       discovery:
