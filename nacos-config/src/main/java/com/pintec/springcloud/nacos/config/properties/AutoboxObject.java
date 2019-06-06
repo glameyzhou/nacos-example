@@ -18,10 +18,21 @@ import java.util.Map;
 @RefreshScope
 @Component
 @Data
-@ConfigurationProperties(prefix = "autobox")
+@ConfigurationProperties(prefix = AutoboxObject.PREFIX)
 public class AutoboxObject {
+    public static final String PREFIX = "autobox";
     private String code;
     private List<String> emailList = new ArrayList<>();
     private Map<String, String> mappings = new HashMap<>();
-    private List<Contact> contactList = new ArrayList<>();
+    private List<AutoboxObject.Contact> contactList = new ArrayList<>();
+
+
+    @RefreshScope
+    @Component
+    @Data
+    public static class Contact {
+        private String name;
+        private int age;
+        private String address;
+    }
 }

@@ -20,7 +20,7 @@ spring:
           - data-id: redis.properties
             group: shard-area
             refresh: true
-#        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772  #demo-namespace
+#        namespace: 61013667-e9b9-4edf-b49b-0495fc0f0182  #demo-namespace
       #        shared-dataids: redis.properties,redis.properties
 #        refreshable-dataids: redis.properties,redis.properties
       discovery:
