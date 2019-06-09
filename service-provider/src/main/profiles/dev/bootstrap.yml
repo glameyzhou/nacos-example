@@ -10,7 +10,6 @@ spring:
         group: demo
         namespace: 595e9460-ddcc-4a0d-baff-9f8710a8a6ba
 
-
 server:
   port: 9100
 
