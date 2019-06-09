@@ -29,6 +29,9 @@
         <module>nacos-provider</module>
         <module>nacos-consumer</module>
         <module>nacos-config</module>
+        <module>eureka-server</module>
+        <module>service-provider</module>
+        <module>service-consumer</module>
     </modules>
 
     <dependencyManagement>
@@ -47,8 +50,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -62,11 +63,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <dependency>

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: server-provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.1.105:8847,192.168.1.105:8848,192.168.1.105:8849
+        prefix: ${spring.application.name}
+        file-extension: yml
+        group: demo
+        namespace: 595e9460-ddcc-4a0d-baff-9f8710a8a6ba
+
+
+server:
+  port: 9100
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://www.glamey.org:9000/eureka/
