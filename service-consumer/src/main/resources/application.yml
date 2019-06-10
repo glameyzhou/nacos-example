@@ -16,6 +16,8 @@ eureka:
     registry-fetch-interval-seconds: 5
 
 
+
+
 #eureka客户端ribbon刷新时间
 #ribbon:
 #  ServerListRefreshInterval: 5

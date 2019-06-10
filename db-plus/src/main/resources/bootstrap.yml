@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: db-plus
+  datasource:
+    driver-class-name: org.h2.Driver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:h2:mem:test
+    username: root
+    password: test
+
+  # h2 console 相关配置，用来做测试比较方便，提供了一个web console界面。
+  h2:
+    console:
+      path: /h2-console
+      enabled: true  #启动后是否自动打开h2 web console
+      settings:
+        web-allow-others: true
+        trace: true
+
+
+eureka:
+  #eureka client 刷新时间
+  client:
+    serviceUrl:
+      defaultZone: http://www.glamey.org:9000/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
+
+server:
+  port: 9900

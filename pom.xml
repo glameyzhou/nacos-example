@@ -33,6 +33,7 @@
         <module>service-provider</module>
         <module>service-consumer</module>
         <module>service-gateway</module>
+        <module>db-plus</module>
     </modules>
 
     <dependencyManagement>

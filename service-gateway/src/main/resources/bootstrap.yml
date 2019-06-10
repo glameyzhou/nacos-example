@@ -43,13 +43,18 @@ spring:
 #          uri: lb://SERVICE-CONSUMER
 #          predicates:
 #            - Path=/echo/**
+#
+#        - id: service-db-plus-router
+#          uri: lb://db-plus
+#          predicates:
+#            - Path=/user/**
 
 
 
-
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG
+# 日志相关的配置，也可以迁移至外部nacos-config
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: TRACE
+#    org.springframework.http.server.reactive: DEBUG
+#    org.springframework.web.reactive: DEBUG
+#    reactor.ipc.netty: DEBUG

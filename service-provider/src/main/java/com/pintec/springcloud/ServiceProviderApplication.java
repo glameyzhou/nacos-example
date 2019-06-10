@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @SpringBootApplication
@@ -44,6 +45,34 @@ public class ServiceProviderApplication {
         @GetMapping(value = "gateway/demo")
         public String forGateway(@RequestParam(value = "code") String code) {
             return new StringBuffer().append("gateway-code -> ").append(code).toString();
+        }
+
+
+        @GetMapping(value = "exception")
+        public String exception() {
+            boolean isException = System.currentTimeMillis() % 2 == 0;
+            log.info("exception test isException -> {}", isException);
+            if (isException) {
+                throw new RuntimeException("random exception");
+            }
+            return "success";
+        }
+
+        @GetMapping(value = "timeout")
+        public String timeout() {
+            Long timeout = null;
+            ServerProviderProperties.CircuitBreaker circuitBreaker = serverProviderProperties.getCircuitBreaker();
+            if (circuitBreaker != null) {
+                timeout = circuitBreaker.getTimeout();
+            }
+            timeout = timeout != null ? timeout.longValue() : 10;
+            log.info("timeout test, timeout is {} s", timeout);
+            try {
+                TimeUnit.SECONDS.sleep(timeout);
+            } catch (InterruptedException e) {
+                log.error("time sleep error", e);
+            }
+            return "success";
         }
     }
 }
