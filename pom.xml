@@ -32,6 +32,7 @@
         <module>eureka-server</module>
         <module>service-provider</module>
         <module>service-consumer</module>
+        <module>service-gateway</module>
     </modules>
 
     <dependencyManagement>
@@ -60,10 +61,10 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

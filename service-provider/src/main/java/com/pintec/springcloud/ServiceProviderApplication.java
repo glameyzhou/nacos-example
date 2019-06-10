@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 
 @Slf4j
 @SpringBootApplication
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 public class ServiceProviderApplication {
 
     public static void main(String[] args) {
@@ -38,6 +38,12 @@ public class ServiceProviderApplication {
         @GetMapping(value = "getConfig")
         public String getNacosConfig() {
             return serverProviderProperties.toString();
+        }
+
+
+        @GetMapping(value = "gateway/demo")
+        public String forGateway(@RequestParam(value = "code") String code) {
+            return new StringBuffer().append("gateway-code -> ").append(code).toString();
         }
     }
 }

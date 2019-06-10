@@ -16,7 +16,7 @@ import java.util.Map;
 @RefreshScope
 @ConfigurationProperties(prefix = ServerProviderProperties.PREFIX)
 public class ServerProviderProperties {
-    public static final String PREFIX = "server-provider";
+    public static final String PREFIX = "service-provider";
     private String code;
     private String name;
     private List<String> myList = new ArrayList<>();

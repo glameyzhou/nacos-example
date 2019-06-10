@@ -48,14 +48,12 @@ public class ServiceConsumerApplication {
 
         @GetMapping(value = "echo/rest")
         public String echo_rest(@RequestParam(value = "code") String code) {
-            return restTemplate.getForObject("http://server-provider/echo?code=" + code, String.class);
+            return restTemplate.getForObject("http://service-provider/echo?code=" + code, String.class);
         }
-
-
     }
 
 
-    @FeignClient("server-provider")
+    @FeignClient("service-provider")
     public interface FeignService {
         @GetMapping(value = "echo")
         String echo(String code);

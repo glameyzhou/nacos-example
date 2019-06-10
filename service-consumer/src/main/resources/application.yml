@@ -2,10 +2,21 @@ server:
   port: 9200
 spring:
   application:
-    name: server-consumer
+    name: service-consumer
 
 
 eureka:
+  #eureka client 刷新时间
   client:
     serviceUrl:
       defaultZone: http://localhost:9000/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    #主动获取服务列表，默认间隔时长是30S
+    registry-fetch-interval-seconds: 5
+
+
+#eureka客户端ribbon刷新时间
+#ribbon:
+#  ServerListRefreshInterval: 5
+

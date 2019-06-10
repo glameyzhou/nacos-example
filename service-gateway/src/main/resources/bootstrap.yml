@@ -1,0 +1,55 @@
+server:
+  port: 9300
+
+
+eureka:
+  #eureka client 刷新时间
+  client:
+    serviceUrl:
+      defaultZone: http://www.glamey.org:9000/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    #主动获取服务列表，默认间隔时长是30S
+    registry-fetch-interval-seconds: 5
+
+
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+
+    ## 针对gateway的配置是动态生效的
+    nacos:
+      config:
+        server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+        prefix: ${spring.application.name}
+        file-extension: yml
+        group: DEFAULT_GROUP
+        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+
+
+
+
+#    测试网关配置，直接将配置放在nacos-config即可
+#    gateway:
+#      routes:
+#        - id: service-provider-router
+#          uri: lb://SERVICE-PROVIDER
+#          predicates:
+#            - Path=/gateway/**,/echo
+#
+#        - id: service-consumer-router
+#          uri: lb://SERVICE-CONSUMER
+#          predicates:
+#            - Path=/echo/**
+
+
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
