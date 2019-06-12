@@ -1,7 +1,6 @@
 package com.pintec.springcloud.nacos.discovery.provider;
 
 
-import com.google.common.collect.ImmutableMap;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,23 +12,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 public class NacosDiscoveryProvider {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosDiscoveryProvider.class, args);
-        SpringContextUtil.setApplicationContext(applicationContext);
+        SpringApplication.run(NacosDiscoveryProvider.class, args);
     }
 
     @Slf4j
     @RestController
     public static class EchoController {
-
 
         @Resource
         private EnvProperties envProperties;
@@ -46,13 +44,11 @@ public class NacosDiscoveryProvider {
         }
 
 
-        @GetMapping(value = "env")
-        public Map<String, Map<String, Object>> outputEnv() {
-            ConfigurableApplicationContext context = (ConfigurableApplicationContext) SpringContextUtil.getContext();
-            ImmutableMap<String, Map<String, Object>> map = ImmutableMap.of(
-                    "env", context.getEnvironment().getSystemEnvironment(),
-                    "pro", context.getEnvironment().getSystemProperties());
-            return map;
+        @GetMapping(value = "echoPropertie")
+        public String outputEnv(String key) {
+            ConfigurableApplicationContext configurableApplicationContext = (ConfigurableApplicationContext) (ContextLoader.getCurrentWebApplicationContext());
+            String propertyValue = configurableApplicationContext.getEnvironment().getProperty(key);
+            return propertyValue;
         }
     }
 
