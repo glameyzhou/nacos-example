@@ -98,7 +98,7 @@ public class ServiceConsumerApplication {
                         @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
                         @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
                         @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
-                        @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+                        @HystrixProperty(name = "metrics.rollingStats.timeInMdinilliseconds", value = "1440")
                 })
         @GetMapping(value = "exception")
         public String exception() {
