@@ -14,3 +14,8 @@ spring:
         enabled: false
 
 
+#  注意：https://github.com/alibaba/nacos/issues/452#issuecomment-501620432 具体原因看我写的wiki回复
+#  main:
+#    allow-bean-definition-overriding: false
+
+
