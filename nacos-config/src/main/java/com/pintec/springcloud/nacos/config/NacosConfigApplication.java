@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import com.pintec.springcloud.nacos.config.properties.AutoboxObject;
 import com.pintec.springcloud.nacos.config.properties.PropertiesEcho;
 import com.pintec.springcloud.nacos.config.properties.ThreadPoolProperties;
+import com.pintec.springcloud.nacos.config.properties.UnAnnotationProperties;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -48,6 +49,10 @@ public class NacosConfigApplication {
 
         @Resource
         private AutoboxObject autoboxObject;
+
+        @Resource
+        private UnAnnotationProperties unAnnotationProperties;
+
 
         @Value(value = "${spring.cloud.nacos.config.server-addr:}")
         private String serverAddr;
@@ -97,6 +102,17 @@ public class NacosConfigApplication {
                 }
             }
             return ImmutableMap.of("properties", null, key, null);
+        }
+
+
+        @GetMapping(value = "echoUnAnnotation")
+        public String echoUnAnnotation() {
+            return unAnnotationProperties.getName()
+                    + " " + unAnnotationProperties.getCode()
+                    + " " + unAnnotationProperties.getAge()
+
+
+                    ;
         }
     }
 

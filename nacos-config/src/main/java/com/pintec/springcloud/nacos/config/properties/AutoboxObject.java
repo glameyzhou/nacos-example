@@ -15,7 +15,7 @@ import java.util.Map;
  * <p>
  * https://blog.csdn.net/thc1987/article/details/78789426
  */
-@RefreshScope
+//@RefreshScope
 @Component
 @Data
 @ConfigurationProperties(prefix = AutoboxObject.PREFIX)
@@ -25,7 +25,7 @@ public class AutoboxObject {
     private List<String> emailList = new ArrayList<>();
     private Map<String, String> mappings = new HashMap<>();
     private List<AutoboxObject.Contact> contactList = new ArrayList<>();
-
+    private String userName;
 
     @RefreshScope
     @Component

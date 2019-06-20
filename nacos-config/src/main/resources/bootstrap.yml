@@ -21,6 +21,9 @@ spring:
           - data-id: redis.properties
             group: shard-area
             refresh: true
+          - data-id: nacos-config-unAnnotation.properties
+            group: DEFAULT_GROUP
+            refresh: true
 #        namespace: 61013667-e9b9-4edf-b49b-0495fc0f0182  #demo-namespace
       #        shared-dataids: redis.properties,redis.properties
 #        refreshable-dataids: redis.properties,redis.properties
