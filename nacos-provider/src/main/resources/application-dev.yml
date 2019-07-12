@@ -9,6 +9,12 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+        watch-delay: 3000
+        metadata:
+          - name: nacos-provider
+          - port: 8010
+          - group: none
 
 
 

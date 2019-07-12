@@ -9,6 +9,8 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+        register-enabled: true
     loadbalancer:
       retry:
         enabled: false
@@ -19,3 +21,14 @@ spring:
 #    allow-bean-definition-overriding: false
 
 
+#ribbon的超时时间,
+ribbon:
+  ReadTimeout: 5000               #请求处理的超时时间
+  ConnectTimeout: 3000            #请求连接的超时时间
+  MaxAutoRetriesNextServer: 1     #切换实例的重试次数
+  MaxAutoRetries: 0               #对当前实例的重试次数
+  OkToRetryOnAllOperations: true  #对所有操作请求都进行重试
+  ServerListRefreshInterval: 3000 #用来刷新列表。
+#    eager-load:
+#      enabled: false
+#      clients: service-provider

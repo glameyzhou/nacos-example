@@ -34,6 +34,7 @@
         <module>service-consumer</module>
         <module>service-gateway</module>
         <module>db-plus</module>
+        <module>tools</module>
     </modules>
 
     <dependencyManagement>

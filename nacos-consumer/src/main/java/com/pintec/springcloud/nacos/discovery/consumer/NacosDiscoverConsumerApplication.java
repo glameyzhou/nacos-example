@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -40,7 +41,7 @@ public class NacosDiscoverConsumerApplication {
         String feignEcho(@RequestParam(value = "code") String code);
     }
 
-    //    @FeignClient(value = "nacos-provider")
+    @FeignClient(value = "nacos-provider")
     public interface ProviderFeignClient2 {
         @GetMapping(value = "echo")
         String feignEcho(@RequestParam(value = "code") String code);

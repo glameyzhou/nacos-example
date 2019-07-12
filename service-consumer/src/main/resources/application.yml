@@ -1,8 +1,5 @@
 server:
   port: 9200
-spring:
-  application:
-    name: service-consumer
 
 
 eureka:
@@ -16,9 +13,38 @@ eureka:
     registry-fetch-interval-seconds: 5
 
 
-
-
 #eureka客户端ribbon刷新时间
 #ribbon:
 #  ServerListRefreshInterval: 5
 
+
+
+# feign ribbon hystrix超时时间设置
+#https://priesttomb.github.io/%E5%88%86%E5%B8%83%E5%BC%8F/2018/09/19/Zuul-Ribbon-Feign-Hystrix-%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E8%AE%BE%E7%BD%AE%E9%97%AE%E9%A2%98/
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2000
+
+#ribbon的超时时间
+#service-consumer:
+#  ribbon:
+#    ReadTimeout: 5000 #请求处理的超时时间
+#    ConnectTimeout: 3000 #请求连接的超时时间
+#    MaxAutoRetriesNextServer: 1 #切换实例的重试次数
+#    MaxAutoRetries: 0  #对当前实例的重试次数
+#    OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+#    ServerListRefreshInterval: 5000
+#    eager-load:
+#      enabled: true
+#      clients: service-provider
+
+#ribbon:
+#  ReadTimeout: 5000
+#  ConnectTimeout: 3000

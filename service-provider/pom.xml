@@ -60,6 +60,9 @@
                     </resource>
                 </resources>
             </build>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
 
         <profile>

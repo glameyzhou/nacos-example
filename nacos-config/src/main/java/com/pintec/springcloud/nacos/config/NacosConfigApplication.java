@@ -2,10 +2,7 @@ package com.pintec.springcloud.nacos.config;
 
 
 import com.google.common.collect.ImmutableMap;
-import com.pintec.springcloud.nacos.config.properties.AutoboxObject;
-import com.pintec.springcloud.nacos.config.properties.PropertiesEcho;
-import com.pintec.springcloud.nacos.config.properties.ThreadPoolProperties;
-import com.pintec.springcloud.nacos.config.properties.UnAnnotationProperties;
+import com.pintec.springcloud.nacos.config.properties.*;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -53,6 +50,9 @@ public class NacosConfigApplication {
         @Resource
         private UnAnnotationProperties unAnnotationProperties;
 
+        @Resource
+        private RemoveProperties removeProperties;
+
 
         @Value(value = "${spring.cloud.nacos.config.server-addr:}")
         private String serverAddr;
@@ -74,6 +74,11 @@ public class NacosConfigApplication {
 
         @Value(value = "${spring.cloud.nacos.config.file-extension:properties")
         private String fileExtension;
+
+        @GetMapping("echoRemove")
+        public String echoRemove() {
+            return removeProperties.toString();
+        }
 
         @GetMapping(value = "echoConfig")
         public String echoConfig() {
