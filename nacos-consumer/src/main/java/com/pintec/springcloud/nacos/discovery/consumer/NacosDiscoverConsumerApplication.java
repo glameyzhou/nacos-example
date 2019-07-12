@@ -96,12 +96,16 @@ public class NacosDiscoverConsumerApplication {
 
         @GetMapping(value = "echo-feign")
         public String echoByFeign(String code) {
-            return providerFeignClient.feignEcho(code) + " -> " + providerFeignClient2.feignEcho(code);
+            String result = providerFeignClient.feignEcho(code) + " -> " + providerFeignClient2.feignEcho(code);
+            log.info("echo feign code = {}, response = {}", code, result);
+            return result;
         }
 
         @GetMapping(value = "echo-rest")
         public String echoByRestTemplate(String code) {
-            return restTemplate.getForObject("http://nacos-provider/echo?code=" + code, String.class);
+            String result = restTemplate.getForObject("http://nacos-provider/echo?code=" + code, String.class);
+            log.info("echo rest code = {}, response = {}", code, result);
+            return result;
         }
     }
 }
