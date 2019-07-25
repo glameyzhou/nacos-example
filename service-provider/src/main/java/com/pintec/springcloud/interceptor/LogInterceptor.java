@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -49,7 +50,8 @@ public class LogInterceptor {
     /**
      * @around 无法处理void类型的方法，因此需要排除掉
      */
-    @Pointcut("execution(!void com.pintec.springcloud.controller.*.*(..)) && @annotation(com.pintec.springcloud.interceptor.Log)")
+//    @Pointcut("execution(!void com.pintec.springcloud.controller.*.*(..)) && @annotation(com.pintec.springcloud.interceptor.Log)")
+    @Pointcut("@annotation(com.pintec.springcloud.interceptor.Log)")
     public void pointcutExpression() {
 
     }
@@ -60,6 +62,24 @@ public class LogInterceptor {
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();
         String methodName = method.getName();
         String simpleName = pjp.getTarget().getClass().getSimpleName();
+
+        /*
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        ServletInputStream inputStream = request.getInputStream();
+        String requestBody = IOUtils.toString(inputStream);
+        System.out.println(requestBody);
+        */
+
+        /*
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        byte[] bytes = ByteStreams.toByteArray(request.getInputStream());
+        ByteSource byteSource = ByteSource.wrap(bytes);
+        InputStream newInputStream = byteSource.openStream();
+        String requestBody = IOUtils.toString(newInputStream);
+        logger.info("requestBody {}", requestBody);
+        proceed = pjp.proceed();
+        */
+
         try {
             List<Object> inputParameters = buildInputParameters(pjp.getArgs());
             logger.info("[request] [{}.{}] {}", simpleName, methodName, GSON.toJson(inputParameters));
@@ -89,7 +109,8 @@ public class LogInterceptor {
         if (args == null) {
             return null;
         }
-        return Arrays.stream(args).filter(arg -> !(arg instanceof HttpServletRequest) && !(arg instanceof HttpServletRequest)).collect(Collectors.toList());
+        //排除掉HttpServletRequest HttpServletResponse
+        return Arrays.stream(args).filter(arg -> !(arg instanceof HttpServletRequest) && !(arg instanceof HttpServletResponse)).collect(Collectors.toList());
     }
 
     private static class BytesIgnoreTypeAdapter implements JsonSerializer<byte[]> {

@@ -46,7 +46,7 @@ public class ServiceProviderApplication {
         }
 
 
-        @GetMapping(value = "gateway/demo")
+        @GetMapping(value = "gateway/dpemo")
         public String forGateway(@RequestParam(value = "code") String code) {
             return new StringBuffer().append("gateway-code -> ").append(code).toString();
         }
