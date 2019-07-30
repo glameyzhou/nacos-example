@@ -1,5 +1,7 @@
 package com.pintec.springcloud.controller;
+import	java.io.FileInputStream;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.pintec.springcloud.interceptor.Log;
@@ -10,9 +12,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +95,7 @@ public class DemoController {
     /**
      * post application/json;charsets=UTF-8
      * 如果拦截器中消费了request.getInputStream的内容，那么后续将无法获取到任何东西
+     *
      * @param request
      * @return
      * @throws IOException
@@ -108,5 +109,13 @@ public class DemoController {
         Map<String, Object> map = Maps.newHashMap();
         map.put("message", requestBody);
         return map;
+    }
+
+
+    @Log
+    @GetMapping("/path/{name}/{code}")
+    public Map<String, Object> path(@PathVariable(value = "name") String name, @PathVariable(value = "code") String code) {
+        logger.info("path {}/{}", name, code);
+        return ImmutableMap.of("name", name, "code", code);
     }
 }
