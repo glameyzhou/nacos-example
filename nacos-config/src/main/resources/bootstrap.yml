@@ -1,29 +1,33 @@
-
 spring:
   application:
     name: nacos-config
   cloud:
     nacos:
       config:
-        server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+        server-addr: 192.168.208.117:8847,192.168.208.117:8848,192.168.208.117:8849
 #        server-addr: 10.10.8.33:8080,10.10.8.34:8080,10.10.8.35:8080
         #        endpoint: www.glamey.org:80
         group: DEFAULT_GROUP
         file-extension: properties
         prefix: nacos-config
         ext-config:
-          - data-id: nacos-config-ext-test.properties
+          - data-id: nacos-config-ext-thread-pool.properties
             group: DEFAULT_GROUP
             refresh: true
+
           - data-id: nacos-config-ext-autobox.properties
             group: DEFAULT_GROUP
             refresh: true
+
+
           - data-id: redis.properties
             group: shard-area
             refresh: true
+
           - data-id: nacos-config-unAnnotation.properties
             group: DEFAULT_GROUP
             refresh: true
+
           - data-id: nacos-config-remove.yml
             group: DEFAULT_GROUP
             refresh: true
@@ -33,7 +37,7 @@ spring:
 #        refreshable-dataids: redis.properties,redis.properties
       discovery:
 #        endpoint: www.glamey.org:80
-        server-addr: 192.168.210.164:8847,192.168.210.164:8848,192.168.210.164:8849
+        server-addr: 192.168.208.117:8847,192.168.208.117:8848,192.168.208.117:8849
 
 #  profiles:
 #    active: dev

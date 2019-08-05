@@ -8,7 +8,7 @@ spring:
         prefix: ${spring.application.name}
         file-extension: yml
         group: demo
-        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772z
 
 server:
   port: 9101

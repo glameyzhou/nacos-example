@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 @RefreshScope
-public class UnAnnotationProperties {
+public class UnAnnotationProperties implements java.io.Serializable{
     @Value("${unAnnotation.name}")
     private String name;
     @Value("${unAnnotation.code}")

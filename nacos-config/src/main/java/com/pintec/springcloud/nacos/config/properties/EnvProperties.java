@@ -8,7 +8,7 @@ import java.util.List;
  * @date 2019.06.28.17. yang.zhou
  */
 @Data
-public class EnvProperties {
+public class EnvProperties implements java.io.Serializable{
     private String envName;
     private String address;
     private List<String> emailList;

@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 @Data
 @ConfigurationProperties(prefix = AutoboxObject.PREFIX)
-public class AutoboxObject {
+public class AutoboxObject implements java.io.Serializable{
     public static final String PREFIX = "autobox";
     private String code;
     private List<String> emailList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class AutoboxObject {
     @RefreshScope
     @Component
     @Data
-    public static class Contact {
+    public static class Contact implements java.io.Serializable{
         private String name;
         private int age;
         private String address;

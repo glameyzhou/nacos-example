@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "remove")
-public class RemoveProperties {
+public class RemoveProperties implements java.io.Serializable{
 
 
     private String appName;
