@@ -1,32 +1,38 @@
 spring:
   application:
     name: service-provider
+
   cloud:
     nacos:
-      config:
+      discovery:
         server-addr: 192.168.208.117:8847,192.168.208.117:8848,192.168.208.117:8849
-        prefix: ${spring.application.name}
-        file-extension: yml
-        group: demo
-        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+
+#    nacos:
+#      config:
+#        server-addr: 192.168.208.117:8847,192.168.208.117:8848,192.168.208.117:8849
+#        prefix: ${spring.application.name}
+#        file-extension: yml
+#        group: demo
+#        namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
+
 
 server:
   port: 9999
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://www.glamey.org:9000/eureka/
-    fetch-registry: false
-    register-with-eureka: true
-
-  instance:
-    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
-    #eureka server务必设置eviction-interval-timer-in-ms,否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
-    lease-expiration-duration-in-seconds: 15
-    #服务刷新时间配置，定时主动心跳一次。
-    lease-renewal-interval-in-seconds: 5
-    appname: service-provider
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://www.glamey.org:9000/eureka/
+#    fetch-registry: false
+#    register-with-eureka: true
+#
+#  instance:
+#    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+#    #eureka server务必设置eviction-interval-timer-in-ms,否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
+#    lease-expiration-duration-in-seconds: 15
+#    #服务刷新时间配置，定时主动心跳一次。
+#    lease-renewal-interval-in-seconds: 5
+#    appname: service-provider
 
 
 
