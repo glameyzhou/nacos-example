@@ -19,10 +19,10 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ServiceProviderApplication {
+public class ServiceProviderLauncher {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceProviderApplication.class, args);
+        SpringApplication.run(ServiceProviderLauncher.class, args);
     }
 
 

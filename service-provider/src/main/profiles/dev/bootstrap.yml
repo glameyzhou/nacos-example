@@ -11,7 +11,7 @@ spring:
         namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
 
 server:
-  port: 9100
+  port: 9999
 
 eureka:
   client:
@@ -26,6 +26,7 @@ eureka:
     lease-expiration-duration-in-seconds: 15
     #服务刷新时间配置，定时主动心跳一次。
     lease-renewal-interval-in-seconds: 5
+    appname: service-provider
 
 
 

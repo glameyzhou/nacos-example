@@ -18,7 +18,6 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-        <!--<spring-cloud-alibaba.version>0.9.0.RELEASE</spring-cloud-alibaba.version>-->
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud-openfeign.version>2.1.0.RELEASE</spring-cloud-openfeign.version>
         <spring-cloud-netflix.version>2.1.0.RELEASE</spring-cloud-netflix.version>
@@ -33,7 +32,6 @@
         <module>service-consumer</module>
         <module>service-gateway</module>
         <module>db-plus</module>
-        <module>tools</module>
     </modules>
 
     <dependencyManagement>

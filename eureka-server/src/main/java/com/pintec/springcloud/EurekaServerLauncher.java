@@ -13,10 +13,10 @@ import java.util.Map;
 @Slf4j
 @SpringBootApplication
 @EnableEurekaServer
-public class EurekaServerApplication {
+public class EurekaServerLauncher {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(EurekaServerApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(EurekaServerLauncher.class, args);
         ConfigurableEnvironment environment = context.getEnvironment();
 
         log.info("System properties ---->");

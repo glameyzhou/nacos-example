@@ -1,6 +1,6 @@
 package com.pintec.springcloud.controller;
-import	java.io.FileInputStream;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
@@ -11,14 +11,15 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.Map;
@@ -26,15 +27,27 @@ import java.util.Map;
 /**
  * @date 2019.07.24.13. yang.zhou
  */
-@Controller
-@RequestMapping("demo")
+@RestController
+@RequestMapping("service-provider")
 public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
+
+    @GetMapping("echoGet")
+    public String echoGet(String message) {
+        return "echo get " + message;
+    }
+
+    @PostMapping("echoPost")
+    public String echoPost(String message) {
+        return "echo post " + message;
+    }
+
+
     //测试demo,不用关注filePath的安全性问题
     @Log
-    @RequestMapping("fileDownload")
+    @GetMapping("demo/fileDownload")
     public void fileDownload(String filePath, HttpServletRequest request, HttpServletResponse response) {
         logger.info("[file download] {}", filePath);
 
@@ -62,9 +75,8 @@ public class DemoController {
     }
 
 
-    @Log
-    @RequestMapping("printMessage")
-    @ResponseBody
+    //    @Log
+    @GetMapping("printMessage")
     public Map<String, Object> printMessage(String message) {
         Map<String, Object> map = Maps.newHashMap();
         map.put("date", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
@@ -74,8 +86,7 @@ public class DemoController {
 
 
     @Log
-    @RequestMapping("printByteData")
-    @ResponseBody
+    @GetMapping("printByteData")
     public Map<String, Object> printByteData(String message) {
         Map<String, Object> map = Maps.newHashMap();
         map.put("message", message);
@@ -84,8 +95,7 @@ public class DemoController {
     }
 
     @Log
-    @RequestMapping("printBody")
-    @ResponseBody
+    @GetMapping("printBody")
     public Map<String, Object> printByteData(@RequestBody DemoDomain domain) {
         Map<String, Object> map = Maps.newHashMap();
         map.put("message", new Gson().toJson(domain));
@@ -101,8 +111,7 @@ public class DemoController {
      * @throws IOException
      */
     @Log
-    @RequestMapping("extractRequest")
-    @ResponseBody
+    @GetMapping("extractRequest")
     public Map<String, Object> extractRequest(HttpServletRequest request) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String requestBody = IOUtils.toString(inputStream);
@@ -117,5 +126,16 @@ public class DemoController {
     public Map<String, Object> path(@PathVariable(value = "name") String name, @PathVariable(value = "code") String code) {
         logger.info("path {}/{}", name, code);
         return ImmutableMap.of("name", name, "code", code);
+    }
+
+
+    @Log
+    @GetMapping("viewFile")
+    public void viewFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ServletOutputStream outputStream = response.getOutputStream();
+        InputStream inputStream = IOUtils.toInputStream("asbasdfasdf", Charsets.UTF_8.name());
+        IOUtils.copy(inputStream, outputStream);
+        IOUtils.closeQuietly(inputStream);
+        IOUtils.closeQuietly(outputStream);
     }
 }

@@ -25,10 +25,10 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class NacosConfigApplication {
+public class NacosConfigLauncher {
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosConfigApplication.class, args);
+        SpringApplication.run(NacosConfigLauncher.class, args);
     }
 
 

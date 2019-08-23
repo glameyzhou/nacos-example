@@ -1,6 +1,7 @@
 server:
   port: 8010
 
+
 spring:
   application:
     name: nacos-provider
@@ -8,7 +9,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.1.105:8847,192.168.1.105:8848,192.168.1.105:8849
+        server-addr: 192.168.208.117:8847,192.168.208.117:8848,192.168.208.117:8849
         namespace: 1be86fed-e1b1-4144-9d49-c0bc8416c772
         watch-delay: 3000
         metadata:
@@ -16,7 +17,23 @@ spring:
           - port: 8010
           - group: none
 
+  profiles:
+    active: dev
 
+# 双注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://www.glamey.org:9000/eureka/
+    fetch-registry: false
+    register-with-eureka: true
+
+  instance:
+    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    #eureka server务必设置eviction-interval-timer-in-ms,否则这个配置无效，这个配置一般为服务刷新时间配置的三倍
+    lease-expiration-duration-in-seconds: 15
+    #服务刷新时间配置，定时主动心跳一次。
+    lease-renewal-interval-in-seconds: 5
 
 provider:
   name: glamey(dev)

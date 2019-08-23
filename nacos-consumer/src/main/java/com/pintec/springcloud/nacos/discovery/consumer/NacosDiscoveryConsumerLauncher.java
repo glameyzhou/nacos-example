@@ -1,45 +1,22 @@
 package com.pintec.springcloud.nacos.discovery.consumer;
 
 
-import com.alibaba.ttl.threadpool.TtlExecutors;
-import com.google.common.collect.Lists;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
 //@Import(NacosDiscoverConsumerApplication.ProviderFeignController.class)
-public class NacosDiscoverConsumerApplication {
-
+public class NacosDiscoveryConsumerLauncher {
     public static void main(String[] args) {
-        SpringApplication.run(NacosDiscoverConsumerApplication.class, args);
-    }
-
-    @LoadBalanced
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+        SpringApplication.run(NacosDiscoveryConsumerLauncher.class, args);
     }
 
 
-    @FeignClient(value = "nacos-provider")
+    /*@FeignClient(value = "nacos-provider")
     public interface ProviderFeignClient {
         @GetMapping(value = "echo")
         String feignEcho(@RequestParam(value = "code") String code);
@@ -52,7 +29,7 @@ public class NacosDiscoverConsumerApplication {
     }
 
 
-    /*@Import(FeignClientsConfiguration.class)
+    *//*@Import(FeignClientsConfiguration.class)
     public class ProviderFeignController {
         private ProviderFeignClient providerFeignClient;
         private ProviderFeignClient2 providerFeignClient2;
@@ -82,7 +59,7 @@ public class NacosDiscoverConsumerApplication {
         public ProviderFeignClient2 getProviderFeignClient2() {
             return this.providerFeignClient2;
         }
-    }*/
+    }*//*
 
 
     @Slf4j
@@ -119,7 +96,7 @@ public class NacosDiscoverConsumerApplication {
             providerFeignClient.feignEcho("demo init");
 //            ExecutorService executorService = Executors.newFixedThreadPool(10);
             ExecutorService executorService = TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(10));
-           /* List<CompletableFuture<String>> completableFutures = Lists.newArrayListWithCapacity(100);
+           *//* List<CompletableFuture<String>> completableFutures = Lists.newArrayListWithCapacity(100);
             for (int i = 0; i < 100; i++) {
                 final String code = "code_" + i + "_code";
                 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -130,7 +107,7 @@ public class NacosDiscoverConsumerApplication {
                 }, executorService);
                 completableFutures.add(completableFuture);
             }
-            CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()])).join();*/
+            CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()])).join();*//*
 
 
             for (int i = 0; i < 30; i++) {
@@ -144,5 +121,5 @@ public class NacosDiscoverConsumerApplication {
             }
             return "concurrent ok";
         }
-    }
+    }*/
 }
