@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnvProperties {
 
-    @Value(value = "${provider.name}")
-    private String name;
-
-    @Value(value = "${provider.address}")
-    private String address;
+//    @Value(value = "${provider.name}")
+//    private String name;
+//
+//    @Value(value = "${provider.address}")
+//    private String address;
 }

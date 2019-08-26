@@ -32,3 +32,9 @@ ribbon:
 #    eager-load:
 #      enabled: false
 #      clients: service-provider
+
+
+#
+#nacos-provider:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule
